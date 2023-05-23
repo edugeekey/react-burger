@@ -1,0 +1,20 @@
+#root {
+    --header-height: 128px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-parent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}

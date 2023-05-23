@@ -1,0 +1,8 @@
+.item {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.item_disabled {
+  cursor: default;
+}
