@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import { Ingredient, IngredientType } from 'types';
 import { IngredientTabs } from './ingredient-tabs';
 import { IngredientsGroup } from './ingredients-group';
@@ -9,22 +9,21 @@ import styles from './burger-ingredients.module.css';
 
 type IngredientsDict = Record<IngredientType, Ingredient[]>;
 
-function groupIngredients(ingredients: Ingredient[]): IngredientsDict {
-  return ingredients.reduce((acc, item) => {
-    const groupedItems = (acc[item.type] ?? []);
-    groupedItems.push(item);
-    acc[item.type] = groupedItems;
-    return acc;
-  }, {} as IngredientsDict);
-}
-
 type BurgerIngredientsProps = {
   ingredients: Ingredient[];
 }
 
 export const BurgerIngredients = ({ingredients}: BurgerIngredientsProps): ReactElement => {
   const [active, setActive] = useState<IngredientType>('bun');
-  const groupedIngredients = groupIngredients(ingredients);
+
+  const groupedIngredients = useMemo(() => {
+    return ingredients.reduce((acc, item) => {
+      const groupedItems = (acc[item.type] ?? []);
+      groupedItems.push(item);
+      acc[item.type] = groupedItems;
+      return acc;
+    }, {} as IngredientsDict);
+  }, ingredients);
 
   useEffect(() => {
     const element = document.getElementById(active);

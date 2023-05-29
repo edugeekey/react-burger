@@ -1,0 +1,16 @@
+.popup {
+    z-index: 1;
+    background-color: var(--background);
+    border-radius: 40px;
+    width: 720px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header svg {
+    cursor: pointer;
+}

@@ -13,12 +13,12 @@ export const ConstructorList = ({items}: ConstructorListProps): ReactElement => 
       <ConstructorItem className='mb-4' ingredient={items[0]} align='top' />
       <div className={styles.scrollContainer}>
         {
-          items.slice(1, items.length - 1).map((item) => (
+          items.slice(1).map((item) => (
             <ConstructorItem key={item._id} ingredient={item} />
           ))
         }
       </div>
-      <ConstructorItem className='mt-4' ingredient={items[items.length - 1]} align='bottom'/>
+      <ConstructorItem className='mt-4' ingredient={items[0]} align='bottom'/>
     </ul>
   );
 };

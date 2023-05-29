@@ -1,0 +1,5 @@
+.error {
+    margin: 50px auto;
+    width: calc(100vw / 2);
+    min-width: 435px;
+}

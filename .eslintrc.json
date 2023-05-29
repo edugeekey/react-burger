@@ -24,12 +24,16 @@
         "@typescript-eslint/explicit-function-return-type": "error",
         "quotes": [2, "single", { "avoidEscape": true }],
         "no-param-reassign": "error",
-        "@typescript-eslint/no-unused-vars": ["error"],
-        "@typescript-eslint/typedef": ["error"]
+        "@typescript-eslint/typedef": ["error"],
+        "@typescript-eslint/no-empty-function": "off",
+        "react/display-name": "off"
     },
     "settings": {
         "import/resolver": {
             "typescript": {}
+        },
+        "react": {
+            "version": "detect"
         }
     }
 }
