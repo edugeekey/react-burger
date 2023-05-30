@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useMemo, useState } from 'react';
-import { ModalContext } from './model-context';
+import { ModalContext } from './modal-context';
 import { ChildrenProps, Modal } from 'types';
 import { ModalView } from './modal-view';
 
