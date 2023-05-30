@@ -1,0 +1,7 @@
+.scrollContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex: 1;
+    gap: calc(var(--offset-base-size) * 4);
+}

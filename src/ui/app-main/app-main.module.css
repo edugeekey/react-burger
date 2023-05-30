@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  height: calc(100vh - var(--header-height));
+  min-height: 500px;
+}
+
+@media (min-width: 1240px) {
+  .main {
+    width: 1240px;
+  }
+}
+
+@media (max-width: 1240px) {
+  .main {
+    width: 100%;
+  }
+}

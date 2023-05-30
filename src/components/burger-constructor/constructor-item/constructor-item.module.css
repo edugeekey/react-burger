@@ -1,0 +1,10 @@
+.toggle {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(var(--offset-base-size) * 8);
+}
+
+.toggle svg {
+    cursor: pointer;
+}

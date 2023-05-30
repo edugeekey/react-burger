@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: var(--header-height);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 1280px) {
+  .nav {
+    width: 1280px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .nav {
+    width: 100%;
+  }
+}
