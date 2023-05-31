@@ -1,48 +1,40 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useMemo } from 'react';
 import { BurgerIngredients, BurgerConstructor } from 'components'
-import { getIngredients } from 'api'
+import { getIngredients, useRequest } from 'api'
 import { Error, Loader } from 'ui';
-import { Ingredient } from 'types';
-
-type RequestState = {
-  data: Ingredient[];
-  isLoading: boolean;
-  hasError: boolean;
-}
+import { IngredientsDataContext } from 'store';
 
 export const ConstructorPage = (): ReactElement | null => {
-  const [state, setState] = useState<RequestState>({ data: [], isLoading: false, hasError: false })
+  const {
+    isLoading,
+    hasError,
+    response,
+    request
+  } = useRequest(getIngredients);
 
-  useEffect(() => {
-    setState({ ...state, isLoading: true });
+  useEffect(() => request(), [request]);
 
-    const setError = (): void => setState({ data: [], hasError: true, isLoading: false });
+  const ingredientsContextValue = useMemo(() => ({ ingredients: response?.data ?? [] }), [response?.data]);
 
-    getIngredients()
-      .then(({data, success}) => {
-        if (success) {
-          setState({ data, hasError: false, isLoading: false })
-        } else {
-          setError();
-        }
-      })
-      .catch(setError)
-  }, [])
-
-  if (state.isLoading) {
+  if (isLoading) {
     return <Loader />
   }
 
-  if (state.hasError) {
-    return <Error />
+  if (hasError) {
+    return (
+      <Error
+        text='Попробуйте перезагрузить страницу. Если это не поможет обратитесь в службу поддержки.'
+        title='Перезагрузить'
+        callback={(): void => window.location.reload()} />
+    );
   }
 
-  if (state.data?.length) {
+  if (response?.data?.length) {
     return (
-      <>
-        <BurgerIngredients ingredients={state.data} />
-        <BurgerConstructor items={state.data} />
-      </>
+      <IngredientsDataContext.Provider value={ingredientsContextValue}>
+        <BurgerIngredients />
+        <BurgerConstructor />
+      </IngredientsDataContext.Provider>
     )
   }
 

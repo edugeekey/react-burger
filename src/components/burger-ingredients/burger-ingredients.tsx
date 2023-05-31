@@ -5,16 +5,15 @@ import { IngredientsGroup } from './ingredients-group';
 import { TABS } from './const';
 import { IngredientList } from './ingredient-list';
 import { Text } from 'ui';
+import { useIngredientsData } from 'store';
 import styles from './burger-ingredients.module.css';
 
 type IngredientsDict = Record<IngredientType, Ingredient[]>;
 
-type BurgerIngredientsProps = {
-  ingredients: Ingredient[];
-}
-
-export const BurgerIngredients = ({ingredients}: BurgerIngredientsProps): ReactElement => {
+export const BurgerIngredients = (): ReactElement => {
   const [active, setActive] = useState<IngredientType>('bun');
+
+  const { ingredients } = useIngredientsData();
 
   const groupedIngredients = useMemo(() => {
     return ingredients.reduce((acc, item) => {
@@ -23,7 +22,7 @@ export const BurgerIngredients = ({ingredients}: BurgerIngredientsProps): ReactE
       acc[item.type] = groupedItems;
       return acc;
     }, {} as IngredientsDict);
-  }, ingredients);
+  }, [ingredients]);
 
   useEffect(() => {
     const element = document.getElementById(active);

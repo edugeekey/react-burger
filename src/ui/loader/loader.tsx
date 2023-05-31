@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Text } from '../text';
+import spinner from './loader.svg';
 import styles from './loader.module.css';
 
 export const Loader = (): ReactElement => {
   return (
     <div className={styles.loader}>
-      <Text tag='p' size='l'>Загрузка...</Text>
+      <img src={spinner} height={100} width={100} alt='spinner'/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import styles from './ingredient-details.module.css';
-import { Text } from '../../../ui';
-import { Ingredient } from '../../../types';
+import { Text } from 'ui';
+import { Ingredient } from 'types';
 import { DetailsCell } from './details-cell';
 
 type IngredientDetailsProps = {

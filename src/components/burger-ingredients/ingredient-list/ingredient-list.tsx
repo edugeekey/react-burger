@@ -1,9 +1,9 @@
 import React, { ReactElement, useCallback } from 'react';
 import { Ingredient } from 'types';
-import styles from './indredient-list.module.css';
 import { IngredientCard } from '../ingredient-card';
-import { useModal } from '../../../ui';
+import { useModal } from 'ui';
 import { IngredientDetails } from '../indredient-details';
+import styles from './indredient-list.module.css';
 
 type IngredientListProps = {
   ingredients: Ingredient[];

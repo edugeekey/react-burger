@@ -1,13 +1,15 @@
-import axios, { AxiosResponse } from 'axios';
-import { Urls } from './urls';
+import { AxiosResponse } from 'axios';
 import { Ingredient } from '../types';
+import { ApiRequest, ApiResponse, http } from './http';
+import { Urls } from './urls';
 
-type GetIngredientsResponse = {
-  success: boolean;
-  data: Ingredient[];
-}
+export type GetIngredientsResponse = ApiResponse<{ data: Ingredient[] }>;
 
-export async function getIngredients(): Promise<GetIngredientsResponse> {
-  const response = await axios.get<GetIngredientsResponse, AxiosResponse<GetIngredientsResponse>>(Urls.getIngredients);
+export type GetIngredientsRequest = ApiRequest<void, GetIngredientsResponse>;
+
+export const getIngredients: GetIngredientsRequest = async () => {
+  const response = await http.get<GetIngredientsResponse, AxiosResponse<GetIngredientsResponse>>(
+    Urls.getIngredients
+  );
   return response.data;
 }
