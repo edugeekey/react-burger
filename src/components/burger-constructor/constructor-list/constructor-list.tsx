@@ -1,24 +1,25 @@
 import React, { ReactElement } from 'react';
 import styles from './constructor-list.module.css';
-import { Ingredient } from 'types';
 import { ConstructorItem } from '../constructor-item';
+import { Ingredient } from 'types';
 
 type ConstructorListProps = {
-  items: Ingredient[];
+  bun: Ingredient | undefined;
+  otherIngredients: Ingredient[];
 }
 
-export const ConstructorList = ({items}: ConstructorListProps): ReactElement => {
+export const ConstructorList = ({ bun, otherIngredients }: ConstructorListProps): ReactElement => {
   return (
     <ul className='scroll-parent'>
-      <ConstructorItem className='mb-4' ingredient={items[0]} align='top' />
+      <ConstructorItem className='mb-4' ingredient={bun} align='top' />
       <div className={styles.scrollContainer}>
         {
-          items.slice(1).map((item) => (
+          otherIngredients.map((item) => (
             <ConstructorItem key={item._id} ingredient={item} />
           ))
         }
       </div>
-      <ConstructorItem className='mt-4' ingredient={items[0]} align='bottom'/>
+      <ConstructorItem className='mt-4' ingredient={bun} align='bottom'/>
     </ul>
   );
 };

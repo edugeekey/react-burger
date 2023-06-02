@@ -1,31 +1,33 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { ConstructorFooter } from './constructor-footer';
-import { Ingredient } from 'types';
 import { ConstructorList } from './constructor-list';
-import { useModal } from '../../ui';
+import { useIngredientsData } from 'store';
 import { OrderDetails } from './order-details';
+import { useModal } from 'ui';
 
-type BurgerConstructorProps = {
-  items: Ingredient[];
-}
-
-export const BurgerConstructor = ({items}: BurgerConstructorProps): ReactElement => {
+export const BurgerConstructor = (): ReactElement => {
   const { open } = useModal();
+  const { ingredients } = useIngredientsData();
 
-  const total = useMemo(() => {
-    return items.reduce((sum, curr) => sum + curr.price, 0)
-  }, [items]);
+  const [bun, otherIngredients] = useMemo(() => {
+    const bun = ingredients.find(item => item.type === 'bun');
+    const otherIngredients = ingredients.filter(item => item.type !== 'bun');
+    return [bun, otherIngredients];
+  }, [ingredients]);
 
-  const handleSubmit = useCallback(() => {
-    open({content: <OrderDetails id='034536' /> })
-  }, [open]);
+  const handleSubmit = useCallback(async () => {
+    open({ content: <OrderDetails ids={ingredients.map(x => x._id)} /> })
+  }, [open, ingredients]);
 
   return (
     <section className='scroll-parent pt-25 pb-10'>
-      <ConstructorList items={items} />
+      <ConstructorList
+        bun={bun}
+        otherIngredients={otherIngredients} />
       <ConstructorFooter
-        total={total}
-        onSubmit={handleSubmit} />
+        bun={bun}
+        otherIngredients={otherIngredients}
+        handleSubmit={handleSubmit} />
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Ingredient } from 'types';
 import styles from './constructor-item.module.css';
@@ -22,17 +22,21 @@ function getElementLabel(name: string, align?: Align): string {
 
 type ConstructorItemProps = {
   align?: Align;
-  ingredient: Ingredient;
+  ingredient: Ingredient | undefined;
   className?: string;
 }
 
-export const ConstructorItem = (
+export const ConstructorItem = memo((
   {
     align,
     ingredient,
     className
   }: ConstructorItemProps
-): ReactElement => {
+): ReactElement | null => {
+  if (!ingredient) {
+    return null;
+  }
+
   const {type, image_mobile, price, name} = ingredient;
 
   const isLocked = type === 'bun';
@@ -51,4 +55,4 @@ export const ConstructorItem = (
         price={price} />
     </li>
   );
-};
+});
