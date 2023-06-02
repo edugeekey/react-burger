@@ -22,24 +22,24 @@ function getElementLabel(name: string, align?: Align): string {
 
 type ConstructorItemProps = {
   align?: Align;
-  ingredient: Ingredient | undefined;
+  ingredient: Ingredient;
   className?: string;
+  isLocked?: boolean;
 }
 
 export const ConstructorItem = memo((
   {
     align,
     ingredient,
-    className
+    className,
+    isLocked
   }: ConstructorItemProps
 ): ReactElement | null => {
   if (!ingredient) {
     return null;
   }
 
-  const {type, image_mobile, price, name} = ingredient;
-
-  const isLocked = type === 'bun';
+  const {image_mobile, price, name} = ingredient;
 
   return (
     <li className={cls('flex mr-4 ml-4', className)}>

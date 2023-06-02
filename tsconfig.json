@@ -18,6 +18,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictOptionalProperties": false,
+    "exactOptionalPropertyTypes": false,
     "target": "ES6",
     "sourceMap": true,
     "outDir": "./lib"

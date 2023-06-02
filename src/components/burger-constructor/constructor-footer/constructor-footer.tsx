@@ -6,7 +6,7 @@ import cls from 'classnames'
 import styles from './constructor-footer.module.css'
 
 type ConstructorFooterProps = {
-  bun: Ingredient | undefined;
+  bun: Ingredient;
   otherIngredients: Ingredient[];
   handleSubmit: VoidFunction;
 }

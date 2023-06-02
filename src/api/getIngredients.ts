@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { Ingredient } from '../types';
+import { Ingredient } from 'types';
 import { ApiRequest, ApiResponse, http } from './http';
 import { Urls } from './urls';
 
