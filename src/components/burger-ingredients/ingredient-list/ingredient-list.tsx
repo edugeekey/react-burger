@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { memo, ReactElement, useCallback } from 'react';
 import { Ingredient } from 'types';
 import { IngredientCard } from '../ingredient-card';
 import { useModal } from 'ui';
@@ -9,7 +9,7 @@ type IngredientListProps = {
   ingredients: Ingredient[];
 }
 
-export const IngredientList = ({ ingredients }: IngredientListProps): ReactElement => {
+export const IngredientList = memo(({ ingredients }: IngredientListProps): ReactElement => {
   const { open } = useModal();
 
   const handleCardClick = useCallback((item: Ingredient) => {
@@ -31,4 +31,4 @@ export const IngredientList = ({ ingredients }: IngredientListProps): ReactEleme
       }
     </ul>
   );
-};
+});

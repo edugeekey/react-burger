@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { ReactElement, useMemo, useRef, useState } from 'react';
 import { Ingredient, IngredientType } from 'types';
 import { IngredientTabs } from './ingredient-tabs';
 import { IngredientsGroup } from './ingredients-group';
@@ -13,6 +13,12 @@ type IngredientsDict = Record<IngredientType, Ingredient[]>;
 export const BurgerIngredients = (): ReactElement => {
   const [active, setActive] = useState<IngredientType>('bun');
 
+  const tabsContentRef = useRef<Record<IngredientType, HTMLDivElement | null>>(
+    {bun: null, sauce: null, main: null}
+  );
+
+  const scrollContainerY = useRef<number | null>(null)
+
   const { ingredients } = useIngredientsData();
 
   const groupedIngredients = useMemo(() => {
@@ -24,19 +30,51 @@ export const BurgerIngredients = (): ReactElement => {
     }, {} as IngredientsDict);
   }, [ingredients]);
 
-  useEffect(() => {
-    const element = document.getElementById(active);
-    element?.scrollIntoView({ behavior: 'smooth'});
-  }, [active]);
+  const handleScroll = (): void => {
+    if (tabsContentRef.current) {
+      const tabsContent = tabsContentRef.current;
+      let min: [IngredientType, number] = ['bun', Number.MAX_SAFE_INTEGER];
+      Object.keys(tabsContent).forEach((key: IngredientType) => {
+        const element = tabsContent[key];
+        if (element) {
+          const elementY = element.getBoundingClientRect().y;
+          const diff = Math.abs(elementY - scrollContainerY.current);
+          if (diff <= min[1]) {
+            min = [key, diff];
+          }
+        }
+      });
+      setActive(min[0]);
+    }
+  }
+
+  const handleTabChange = (value: IngredientType): void => {
+    setActive(value);
+    tabsContentRef.current?.[value]?.scrollIntoView({ behavior: 'smooth'});
+  };
 
   return (
     <section className='scroll-parent mt-10 pb-10 mr-10'>
       <Text tag='h1' className='mb-5' size='l'>Соберите бургер</Text>
-      <IngredientTabs tabs={TABS} active={active} onChange={setActive} />
-      <div className={styles.container}>
+      <IngredientTabs tabs={TABS} active={active} onChange={handleTabChange} />
+      <div
+        className={styles.container}
+        ref={(el): void => {
+          if (el) {
+            scrollContainerY.current = el?.getBoundingClientRect()?.y;
+          }
+        }}
+        onScroll={handleScroll}>
         {
           TABS.map(({value, label}) => (
-            <IngredientsGroup id={value} key={value} title={label}>
+            <IngredientsGroup
+              key={value}
+              title={label}
+              ref={(el): void => {
+                if (tabsContentRef.current) {
+                  tabsContentRef.current[value] = el
+                }
+              }}>
               <IngredientList ingredients={groupedIngredients[value]} />
             </IngredientsGroup>
           ))
