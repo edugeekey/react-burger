@@ -2,15 +2,20 @@ import React, { ReactElement } from 'react'
 import { AppHeader } from 'components'
 import { AppMain, ModalProvider } from './ui'
 import { ConstructorPage } from './pages/constructor-page';
-import './app.css'
+import { store } from 'store';
+import { Provider } from 'react-redux';
+import './app.css';
 
 export const App = (): ReactElement => {
   return (
-    <ModalProvider>
-      <AppHeader />
-      <AppMain>
-        <ConstructorPage />
-      </AppMain>
-    </ModalProvider>
+    <Provider store={store}>
+      <ModalProvider>
+        <AppHeader />
+        <AppMain>
+          <ConstructorPage />
+        </AppMain>
+      </ModalProvider>
+    </Provider>
+
   )
 }

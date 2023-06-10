@@ -1,10 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { ApiResponse, ApiRequest, http } from './http';
 import { Urls } from './urls';
+import { Order } from 'types';
 
 export type SubmitOrderResponse = ApiResponse<{
   name: string;
-  order: { number: number }
+  order: Order;
 }>;
 
 export type SubmitOrderRequest = ApiRequest<string[], SubmitOrderResponse>;

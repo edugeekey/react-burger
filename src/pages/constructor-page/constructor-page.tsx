@@ -1,20 +1,23 @@
-import React, { ReactElement, useEffect, useMemo } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { BurgerIngredients, BurgerConstructor } from 'components'
-import { getIngredients, useRequest } from 'api'
 import { Error, Loader } from 'ui';
-import { IngredientsDataContext } from 'store';
+import { useAppSelector, useAppDispatch } from 'store';
+import {
+  fetchIngredients,
+  ingredientsHasErrorSelector,
+  isIngredientsLoadingSelector
+} from 'store/ingredients';
 
 export const ConstructorPage = (): ReactElement | null => {
-  const {
-    isLoading,
-    hasError,
-    response,
-    request
-  } = useRequest(getIngredients);
 
-  useEffect(() => request(), [request]);
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(isIngredientsLoadingSelector);
+  const hasError = useAppSelector(ingredientsHasErrorSelector);
 
-  const ingredientsContextValue = useMemo(() => ({ ingredients: response?.data ?? [] }), [response?.data]);
+
+  useEffect(() => {
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   if (isLoading) {
     return <Loader />
@@ -29,14 +32,10 @@ export const ConstructorPage = (): ReactElement | null => {
     );
   }
 
-  if (response?.data?.length) {
-    return (
-      <IngredientsDataContext.Provider value={ingredientsContextValue}>
-        <BurgerIngredients />
-        <BurgerConstructor />
-      </IngredientsDataContext.Provider>
-    )
-  }
-
-  return null;
+  return (
+    <>
+      <BurgerIngredients />
+      <BurgerConstructor />
+    </>
+  );
 }

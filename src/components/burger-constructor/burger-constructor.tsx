@@ -1,13 +1,14 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { ConstructorFooter } from './constructor-footer';
 import { ConstructorList } from './constructor-list';
-import { useIngredientsData } from 'store';
+import { useAppSelector } from 'store';
 import { OrderDetails } from './order-details';
 import { useModal } from 'ui';
+import { ingredientsSelector } from 'store/ingredients';
 
 export const BurgerConstructor = (): ReactElement => {
   const { open } = useModal();
-  const { ingredients } = useIngredientsData();
+  const ingredients = useAppSelector(ingredientsSelector);
 
   const [bun, otherIngredients] = useMemo(() => {
     const bun = ingredients.find(item => item.type === 'bun');
