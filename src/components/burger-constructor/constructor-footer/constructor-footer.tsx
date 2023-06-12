@@ -6,7 +6,7 @@ import cls from 'classnames'
 import styles from './constructor-footer.module.css'
 
 type ConstructorFooterProps = {
-  bun: Ingredient;
+  bun: Ingredient | null;
   otherIngredients: Ingredient[];
   handleSubmit: VoidFunction;
 }
@@ -25,7 +25,10 @@ export const ConstructorFooter = ({
   return (
     <div className={cls(styles.footer, 'pt-6 pr-4')}>
       <Price className='mr-10' price={total} textSize='m' iconSize='m' />
-      <Button htmlType='button' onClick={handleSubmit}>
+      <Button
+        htmlType='button'
+        onClick={handleSubmit}
+        disabled={!bun || !otherIngredients?.length}>
         Оформить заказ
       </Button>
     </div>

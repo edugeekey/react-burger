@@ -7,6 +7,8 @@ import {
   ingredientsHasErrorSelector,
   isIngredientsLoadingSelector
 } from 'store/ingredients';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export const ConstructorPage = (): ReactElement | null => {
 
@@ -33,9 +35,9 @@ export const ConstructorPage = (): ReactElement | null => {
   }
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
       <BurgerIngredients />
       <BurgerConstructor />
-    </>
+    </DndProvider>
   );
 }

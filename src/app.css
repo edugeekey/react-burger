@@ -24,3 +24,7 @@
     flex: 1;
     min-height: 0;
 }
+
+.pos-rel {
+    position: relative;
+}

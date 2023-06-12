@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Ingredient, RequestState } from 'types';
-import { addIngredient, fetchIngredients, removeIngredient } from 'store/ingredients/ingredients.actions';
+import { fetchIngredients } from 'store/ingredients/ingredients.actions';
 import { typeFn } from 'store/ingredients/const';
 
 type IngredientsState = RequestState<Ingredient[]>;
@@ -12,14 +12,13 @@ const ingredientsSlice = createSlice<IngredientsState>({
     hasError: false,
     data: []
   },
-  reducers: (builder) => {
-    builder
-      .addCase(addIngredient, (state, action) => {
-        console.log(action.payload);
-      })
-      .addCase(removeIngredient, (state, action) => {
-        console.log(action.payload);
-      })
+  reducers: {
+    addIngredient(state: IngredientsState, action: PayloadAction<Ingredient>) {
+      state.data.push(action.payload);
+    },
+    removeIngredient(state: IngredientsState, action: PayloadAction<string>) {
+      state.data = state.data.filter(item => item._id !== action.payload);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -39,3 +38,4 @@ const ingredientsSlice = createSlice<IngredientsState>({
 });
 
 export const ingredientsReducer = ingredientsSlice.reducer;
+export const { addIngredient, removeIngredient } = ingredientsSlice.actions

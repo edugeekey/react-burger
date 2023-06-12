@@ -1,33 +1,31 @@
-import React, { ReactElement, useCallback, useMemo } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import { ConstructorFooter } from './constructor-footer';
 import { ConstructorList } from './constructor-list';
 import { useAppSelector } from 'store';
 import { OrderDetails } from './order-details';
 import { useModal } from 'ui';
-import { ingredientsSelector } from 'store/ingredients';
+import { bunSelector, burgerIngredientsSelector } from 'store/burger-constructor';
 
 export const BurgerConstructor = (): ReactElement => {
   const { open } = useModal();
-  const ingredients = useAppSelector(ingredientsSelector);
+  const bun = useAppSelector(bunSelector);
+  const ingredients = useAppSelector(burgerIngredientsSelector);
 
-  const [bun, otherIngredients] = useMemo(() => {
-    const bun = ingredients.find(item => item.type === 'bun');
-    const otherIngredients = ingredients.filter(item => item.type !== 'bun');
-    return [bun, otherIngredients];
-  }, [ingredients]);
 
   const handleSubmit = useCallback(async () => {
-    open({ content: <OrderDetails ids={ingredients.map(x => x._id)} /> })
-  }, [open, ingredients]);
+    if (bun && ingredients.length) {
+      open({ content: <OrderDetails ids={[bun, ...ingredients].map(x => x._id)} /> })
+    }
+  }, [open, bun, ingredients]);
 
   return (
     <section className='scroll-parent pt-25 pb-10'>
       <ConstructorList
         bun={bun}
-        otherIngredients={otherIngredients} />
+        otherIngredients={ingredients} />
       <ConstructorFooter
         bun={bun}
-        otherIngredients={otherIngredients}
+        otherIngredients={ingredients}
         handleSubmit={handleSubmit} />
     </section>
   );
