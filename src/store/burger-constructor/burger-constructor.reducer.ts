@@ -7,6 +7,11 @@ type BurgerConstructorState = {
   ingredients: IngredientStored[];
 }
 
+type MoveActionPayload = {
+  from: number;
+  to: number;
+}
+
 const burgerConstructorSlice = createSlice<BurgerConstructorState>({
   name: typeFn(),
   initialState: {
@@ -28,9 +33,20 @@ const burgerConstructorSlice = createSlice<BurgerConstructorState>({
     },
     removeConstructorIngredient (state: BurgerConstructorState, action: PayloadAction<string>) {
       state.ingredients = state.ingredients.filter(item => item.id !== action.payload);
+    },
+    moveConstructorIngredient (state: BurgerConstructorState, action: PayloadAction<MoveActionPayload>) {
+      const from = state.ingredients[action.payload.from];
+      const to = state.ingredients[action.payload.to];
+      state.ingredients[action.payload.from] = to;
+      state.ingredients[action.payload.to] = from;
     }
   }
 });
 
 export const burgerConstructorReducer = burgerConstructorSlice.reducer;
-export const { addBun, addConstructorIngredient, removeConstructorIngredient } = burgerConstructorSlice.actions;
+export const {
+  addBun,
+  addConstructorIngredient,
+  removeConstructorIngredient,
+  moveConstructorIngredient
+} = burgerConstructorSlice.actions;
