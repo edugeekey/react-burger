@@ -29,7 +29,7 @@ export const ConstructorList = ({ bun, otherIngredients }: ConstructorListProps)
     <ul className='scroll-parent pos-rel'>
       <DragPlaceholder bun={bun} alwaysShow={!otherIngredients.length}/>
       <BunItem bun={bun} align='top' />
-      <div className={styles.scrollContainer}>
+      <div className={`${styles.scrollContainer} custom-scroll`}>
         {
           otherIngredients.map((item, index) => (
             <IngredientItem

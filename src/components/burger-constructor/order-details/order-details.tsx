@@ -3,6 +3,8 @@ import { Error, Loader, Text } from 'ui';
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useAppDispatch, useAppSelector } from 'store';
 import { fetchOrder, isOrderLoadingSelector, orderHasErrorSelector, orderSelector } from 'store/order';
+import { clear } from 'store/burger-constructor';
+
 import styles from './order-details.module.css';
 
 const ERROR_TEXT = 'Попробуйте повторить. Если это не поможет обратитесь в службу поддержки.'
@@ -18,7 +20,8 @@ export const OrderDetails = ({ ids }: OrderDetailsProps): ReactElement => {
   const order = useAppSelector(orderSelector);
 
   const sendRequest = useCallback(() => {
-    dispatch(fetchOrder(ids));
+    dispatch(fetchOrder(ids))
+      .then(() => dispatch(clear()));
   }, [dispatch, ids]);
 
   useEffect(() => {

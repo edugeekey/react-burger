@@ -1,8 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Modal } from 'types';
-import styles from './modal-view.module.css';
 import { ModalPopup } from './modal-popup';
+import styles from './modal-view.module.css';
+import { ModalOverlay } from './modal-overlay';
+
+const modalsContainer = document.getElementById('modals');
 
 type ModalViewProps = Modal & {
   onBackgroundClick: VoidFunction;
@@ -33,7 +36,7 @@ export const ModalView = (
     <div
       className={`${styles.fixedContainer} flex-center`}>
       <ModalPopup title={title} content={content} onClose={onClose} />
-      <div className={styles.backdrop} onClick={onBackgroundClick}></div>
+      <ModalOverlay onBackgroundClick={onBackgroundClick} />
     </div>
-  ), window.document.body);
+  ), modalsContainer);
 };

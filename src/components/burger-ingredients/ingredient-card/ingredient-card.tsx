@@ -21,13 +21,12 @@ export const IngredientCard = memo(({onClick, ...item}: IngredientCardProps): Re
   const count = useSelectorWithProps(ingredientCountByIdSelector, item._id, [item._id]);
 
   return (
-    <li ref={drag} draggable className={styles.card} onClick={(): void => onClick(item)}>
+    <li ref={drag} className={styles.card} onClick={(): void => onClick(item)}>
       <Counter count={count} size="default" />
       <img
-        className='pl-4 pr-4'
         src={item.image}
         alt={item.name}
-        width={272}
+        width={262}
         height={120}/>
       <Price className='pt-1 pb-1' price={item.price} />
       <Text className='pb-5'>{item.name}</Text>

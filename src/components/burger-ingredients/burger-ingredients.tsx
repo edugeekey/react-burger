@@ -60,7 +60,7 @@ export const BurgerIngredients = (): ReactElement => {
       <Text tag='h1' className='mb-5' size='l'>Соберите бургер</Text>
       <IngredientTabs tabs={TABS} active={active} onChange={handleTabChange} />
       <div
-        className={styles.container}
+        className={`${styles.container} custom-scroll`}
         ref={(el): void => {
           if (el) {
             scrollContainerY.current = el?.getBoundingClientRect()?.y;

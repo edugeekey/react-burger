@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react'
 import { AppHeader } from 'components'
-import { AppMain, ModalProvider } from './ui'
-import { ConstructorPage } from './pages/constructor-page';
+import { AppMain, ModalProvider } from 'ui'
+import { ConstructorPage } from 'pages/constructor-page';
 import { store } from 'store';
 import { Provider } from 'react-redux';
-import './app.css';
 
 export const App = (): ReactElement => {
   return (

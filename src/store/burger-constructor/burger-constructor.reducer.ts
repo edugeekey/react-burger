@@ -39,6 +39,9 @@ const burgerConstructorSlice = createSlice<BurgerConstructorState>({
       const to = state.ingredients[action.payload.to];
       state.ingredients[action.payload.from] = to;
       state.ingredients[action.payload.to] = from;
+    },
+    clear() {
+      return burgerConstructorSlice.getInitialState();
     }
   }
 });
@@ -48,5 +51,6 @@ export const {
   addBun,
   addConstructorIngredient,
   removeConstructorIngredient,
-  moveConstructorIngredient
+  moveConstructorIngredient,
+  clear
 } = burgerConstructorSlice.actions;
