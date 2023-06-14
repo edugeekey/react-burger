@@ -1,8 +1,11 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useCallback, useEffect } from 'react';
 import { Error, Loader, Text } from 'ui';
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useAppDispatch, useAppSelector } from 'store';
+import { fetchOrder, isOrderLoadingSelector, orderHasErrorSelector, orderSelector } from 'store/order';
+import { clear } from 'store/burger-constructor';
+
 import styles from './order-details.module.css';
-import { submitOrder, useRequest } from 'api';
 
 const ERROR_TEXT = 'Попробуйте повторить. Если это не поможет обратитесь в службу поддержки.'
 
@@ -11,22 +14,27 @@ type OrderDetailsProps = {
 }
 
 export const OrderDetails = ({ ids }: OrderDetailsProps): ReactElement => {
-  const {
-    isLoading,
-    hasError,
-    response,
-    request
-  } = useRequest(submitOrder);
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(isOrderLoadingSelector);
+  const hasError = useAppSelector(orderHasErrorSelector);
+  const order = useAppSelector(orderSelector);
 
-  useEffect(() => request(ids), [request, ids]);
+  const sendRequest = useCallback(() => {
+    dispatch(fetchOrder(ids))
+      .then(() => dispatch(clear()));
+  }, [dispatch, ids]);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
 
   return (
     <div className={`${styles.container} flex-column-center pt-10 pb-30`}>
       {
         isLoading ? <Loader /> :
-          hasError ? <Error text={ERROR_TEXT} title='Повторить' callback={(): void => request(ids)} /> :
+          hasError ? <Error text={ERROR_TEXT} title='Повторить' callback={sendRequest} /> :
             <>
-              <Text tag='p' digits size='l' className='mt-4 mb-8'>{response?.order.number}</Text>
+              <Text tag='p' digits size='l' className='mt-4 mb-8'>{order?.number}</Text>
               <Text tag='label' size='m' className='mb-15'>идентификатор заказа</Text>
               <div className={`${styles.badge} flex-center`}>
                 <CheckMarkIcon type="primary" />

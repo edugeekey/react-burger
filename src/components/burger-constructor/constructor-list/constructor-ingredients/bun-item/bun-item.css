@@ -1,0 +1,11 @@
+.bun-item-placeholder img,
+.bun-item-placeholder .constructor-element__price,
+.bun-item-placeholder .constructor-element__action {
+    display: none;
+}
+
+.bun-item-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

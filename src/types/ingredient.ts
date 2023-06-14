@@ -14,3 +14,7 @@ export type Ingredient = {
   image_large: string;
   __v: number;
 };
+
+export type IngredientStored = Ingredient & {
+  id: string;
+};

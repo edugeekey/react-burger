@@ -1,19 +1,19 @@
-import React, { ReactElement } from 'react';
-import { ChildrenProps, IngredientType } from 'types';
+import React, { forwardRef, ReactElement } from 'react';
+import { ChildrenProps } from 'types';
 import { Text } from 'ui';
 
 type IngredientsGroupProps = ChildrenProps & {
-  id: IngredientType;
   title: string;
 }
 
-export const IngredientsGroup = ({ id, title, children }: IngredientsGroupProps): ReactElement => {
+export const IngredientsGroup = forwardRef<HTMLDivElement>(
+  ({ title, children }: IngredientsGroupProps, ref): ReactElement => {
   return (
-    <div id={id} className='pt-10'>
+    <div ref={ref} className='pt-10'>
       <Text tag='h2' size='m'>{title}</Text>
       <div className='pt-6 pl-4 pr-4'>
         {children}
       </div>
     </div>
   );
-};
+});

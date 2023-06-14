@@ -23,7 +23,7 @@ export const ModalProvider = ({ children }: ModalProviderProps): ReactElement =>
   return (
     <ModalContext.Provider value={value}>
       {children}
-      {modal && <ModalView {...modal} onBackgroundClick={close} onClose={close} />}
+      {modal && <ModalView {...modal} onClose={close} />}
     </ModalContext.Provider>
   );
 };
