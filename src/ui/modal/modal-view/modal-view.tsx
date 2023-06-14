@@ -16,7 +16,6 @@ export const ModalView = (
   {
     title,
     content,
-    onBackgroundClick,
     onClose
   }: ModalViewProps
 ): ReactElement => {
@@ -36,7 +35,7 @@ export const ModalView = (
     <div
       className={`${styles.fixedContainer} flex-center`}>
       <ModalPopup title={title} content={content} onClose={onClose} />
-      <ModalOverlay onBackgroundClick={onBackgroundClick} />
+      <ModalOverlay onBackgroundClick={onClose} />
     </div>
   ), modalsContainer);
 };

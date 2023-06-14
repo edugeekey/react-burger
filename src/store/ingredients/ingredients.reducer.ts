@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { Ingredient, RequestState } from 'types';
 import { fetchIngredients } from 'store/ingredients/ingredients.actions';
 import { typeFn } from 'store/ingredients/const';
@@ -12,14 +12,7 @@ const ingredientsSlice = createSlice<IngredientsState>({
     hasError: false,
     data: []
   },
-  reducers: {
-    addIngredient(state: IngredientsState, action: PayloadAction<Ingredient>) {
-      state.data.push(action.payload);
-    },
-    removeIngredient(state: IngredientsState, action: PayloadAction<string>) {
-      state.data = state.data.filter(item => item._id !== action.payload);
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchIngredients.pending, (state) => {
@@ -38,4 +31,3 @@ const ingredientsSlice = createSlice<IngredientsState>({
 });
 
 export const ingredientsReducer = ingredientsSlice.reducer;
-export const { addIngredient, removeIngredient } = ingredientsSlice.actions
