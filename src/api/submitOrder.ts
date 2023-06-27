@@ -12,7 +12,7 @@ export type SubmitOrderRequest = ApiRequest<string[], SubmitOrderResponse>;
 
 export const submitOrder: SubmitOrderRequest = async (ingredients: string[]) => {
   const response = await http.post<SubmitOrderResponse, AxiosResponse<SubmitOrderResponse>>(
-    Urls.submitOrder, { ingredients }
+    Urls.SubmitOrder, { ingredients }
   );
   return response.data;
-}
+};

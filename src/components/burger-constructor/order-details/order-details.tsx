@@ -7,7 +7,7 @@ import { clear } from 'store/burger-constructor';
 
 import styles from './order-details.module.css';
 
-const ERROR_TEXT = 'Попробуйте повторить. Если это не поможет обратитесь в службу поддержки.'
+const ERROR_TEXT = 'Попробуйте повторить. Если это не поможет обратитесь в службу поддержки.';
 
 type OrderDetailsProps = {
   ids: string[];

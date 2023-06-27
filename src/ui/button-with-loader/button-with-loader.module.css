@@ -1,0 +1,16 @@
+.spinner {
+    display: none;
+    position: absolute;
+}
+
+.loading .spinner {
+    display: block;
+}
+
+.content {
+    display: block;
+}
+
+.loading .content {
+    opacity: 0;
+}

@@ -12,8 +12,7 @@ const orderSlice = createSlice<OrderState>({
     hasError: false,
     data: null
   },
-  reducers: (builder) => {
-  },
+  reducers: () => {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchOrder.pending, (state) => {
@@ -27,7 +26,7 @@ const orderSlice = createSlice<OrderState>({
         state.isLoading = false;
         state.data = null;
         state.hasError = true;
-      })
+      });
   }
 });
 

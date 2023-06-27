@@ -1,0 +1,8 @@
+.container {
+    min-height: 435px;
+}
+
+.cells {
+    display: flex;
+    gap: calc(var(--offset-base-size) * 5);
+}

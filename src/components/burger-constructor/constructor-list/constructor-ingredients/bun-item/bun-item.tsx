@@ -8,7 +8,7 @@ import './bun-item.css';
 function getBunLabel(name: string, align?: Align): string {
   switch (align) {
     case 'top': {
-      return `${name} (верх)`
+      return `${name} (верх)`;
     }
     case 'bottom': {
       return `${name} (низ)`;

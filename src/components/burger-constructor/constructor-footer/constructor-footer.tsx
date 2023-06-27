@@ -1,9 +1,9 @@
-import React, { ReactElement, useMemo } from 'react'
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import React, { ReactElement, useMemo } from 'react';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Price } from 'ui';
 import { Ingredient } from 'types';
-import cls from 'classnames'
-import styles from './constructor-footer.module.css'
+import cls from 'classnames';
+import styles from './constructor-footer.module.css';
 
 type ConstructorFooterProps = {
   bun: Ingredient | null;
@@ -32,5 +32,5 @@ export const ConstructorFooter = ({
         Оформить заказ
       </Button>
     </div>
-  )
-}
+  );
+};

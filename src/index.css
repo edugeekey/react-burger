@@ -17,6 +17,17 @@ ul {
 
 /* глобальные частоиспользуемые классы утилиты, которые используются по всему приложению, а не в одном компоненте */
 
+.custom-link {
+  white-space: nowrap;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
 .flex {
   display: flex;
 }

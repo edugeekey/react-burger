@@ -5,18 +5,25 @@ import { useAppSelector } from 'store';
 import { OrderDetails } from './order-details';
 import { useModal } from 'ui';
 import { bunSelector, burgerIngredientsSelector } from 'store/burger-constructor';
+import { isTokensEmpty } from 'utils/localStorageHelper';
+import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from 'const';
 
 export const BurgerConstructor = (): ReactElement => {
   const { open } = useModal();
+  const navigate = useNavigate();
   const bun = useAppSelector(bunSelector);
   const ingredients = useAppSelector(burgerIngredientsSelector);
 
-
   const handleSubmit = useCallback(async () => {
-    if (bun && ingredients.length) {
-      open({ content: <OrderDetails ids={[bun, ...ingredients].map(x => x._id)} /> })
+    if (isTokensEmpty()) {
+      navigate(AppRoutes.Login);
+      return;
     }
-  }, [open, bun, ingredients]);
+    if (bun && ingredients.length) {
+      open({ content: <OrderDetails ids={[bun, ...ingredients].map(x => x._id)} /> });
+    }
+  }, [open, bun, ingredients, navigate]);
 
   return (
     <section className='scroll-parent pt-25 pb-10'>

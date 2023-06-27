@@ -1,23 +1,21 @@
 import React, { memo, ReactElement, useCallback } from 'react';
 import { Ingredient } from 'types';
 import { IngredientCard } from '../ingredient-card';
-import { useModal } from 'ui';
-import { IngredientDetails } from '../indredient-details';
 import styles from './indredient-list.module.css';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AppRoutes } from 'const';
 
 type IngredientListProps = {
   ingredients: Ingredient[];
 }
 
 export const IngredientList = memo(({ ingredients }: IngredientListProps): ReactElement => {
-  const { open } = useModal();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleCardClick = useCallback((item: Ingredient) => {
-    open({
-        title: 'Детали ингредиента',
-        content: <IngredientDetails ingredient={item} />
-    });
-  }, [open]);
+    navigate(`${AppRoutes.Ingredient}/${item._id}`, {state: {background: location}});
+  }, [navigate, location]);
 
   return (
     <ul className={styles.container}>

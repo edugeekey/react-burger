@@ -15,7 +15,7 @@ export const IngredientTabs = (
   const setValue = (value: string): void => {
     const typedValue = value as IngredientType;
     onChange(typedValue);
-  }
+  };
 
   return (
     <div className='flex'>

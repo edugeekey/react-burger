@@ -35,7 +35,7 @@ export const IngredientItem = memo((
   const [{ isDragging }, drag] = useDrag({
     type: DragType.SortIngredient,
     item: () => {
-      return { id: storeId, index }
+      return { id: storeId, index };
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -47,13 +47,13 @@ export const IngredientItem = memo((
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
-      }
+      };
     },
     hover(item: DragItem, monitor) {
       if (!ref.current) {
         return;
       }
-      const dragIndex = item.index
+      const dragIndex = item.index;
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
@@ -78,11 +78,11 @@ export const IngredientItem = memo((
         return;
       }
 
-      onMove(dragIndex, hoverIndex)
+      onMove(dragIndex, hoverIndex);
 
-      item.index = hoverIndex
+      item.index = hoverIndex;
     },
-  })
+  });
 
   drag(drop(ref));
 

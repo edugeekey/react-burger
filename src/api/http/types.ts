@@ -5,3 +5,5 @@ export type ApiRequest<TParams = void, TResponse = ApiResponse> = (
 export type ApiResponse<T = undefined> = T & {
   success: boolean
 }
+
+export type ApiErrorResponse = ApiResponse<{message: string}>;

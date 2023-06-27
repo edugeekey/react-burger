@@ -2,11 +2,31 @@ import React, { JSX, ReactElement } from 'react';
 import { ChildrenProps, Size } from 'types';
 import cls from 'classnames';
 
+type Color = 'accent' | 'error' | 'success';
+
 type TextProps = ChildrenProps & React.HTMLAttributes<HTMLOrSVGElement> & {
   tag?: keyof JSX.IntrinsicElements;
   size?: Size;
   digits?: boolean;
   inactive?: boolean;
+  color?: Color;
+}
+
+function getColorClass(color?: Color): string | undefined {
+  switch (color) {
+    case 'accent': {
+      return 'text_color_accent';
+    }
+    case 'error': {
+      return 'text_color_error';
+    }
+    case 'success': {
+      return 'text_color_success';
+    }
+    default: {
+      return;
+    }
+  }
 }
 
 function getSizeClass(size?: Size, digits?: boolean): string {
@@ -27,7 +47,7 @@ function getSizeClass(size?: Size, digits?: boolean): string {
     }
   }
 
-  return `${mainPart}-${sizePart}`
+  return `${mainPart}-${sizePart}`;
 }
 
 export const Text = (
@@ -36,6 +56,7 @@ export const Text = (
     tag: Tag = 'span',
     digits,
     size = 'default',
+    color,
     inactive = false,
     className,
     ...rest
@@ -43,7 +64,11 @@ export const Text = (
 ): ReactElement => {
   return (
     <Tag
-      className={cls('text', getSizeClass(size, digits), inactive && 'text_color_inactive', className)}
+      className={cls(
+        'text',
+        getSizeClass(size, digits),
+        getColorClass(color),
+        inactive && 'text_color_inactive', className)}
       {...rest}>
       {children}
     </Tag>
