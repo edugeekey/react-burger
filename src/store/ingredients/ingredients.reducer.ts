@@ -26,7 +26,7 @@ const ingredientsSlice = createSlice<IngredientsState>({
         state.isLoading = false;
         state.data = [];
         state.hasError = true;
-      })
+      });
   }
 });
 

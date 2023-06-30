@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { BurgerIngredients, BurgerConstructor } from 'components'
+import { BurgerIngredients, BurgerConstructor } from 'components';
 import { Error, Loader } from 'ui';
 import { useAppSelector, useAppDispatch } from 'store';
 import {
@@ -22,7 +22,7 @@ export const ConstructorPage = (): ReactElement | null => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <Loader />
+    return <Loader />;
   }
 
   if (hasError) {
@@ -40,4 +40,4 @@ export const ConstructorPage = (): ReactElement | null => {
       <BurgerConstructor />
     </DndProvider>
   );
-}
+};

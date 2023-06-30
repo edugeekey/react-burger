@@ -1,5 +1,7 @@
 .error {
+    text-align: center;
     margin: 50px auto;
     width: calc(100vw / 2);
+    max-width: 100%;
     min-width: 435px;
 }

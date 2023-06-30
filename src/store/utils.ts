@@ -20,7 +20,7 @@ export function useSelectorWithProps<TParams, TResult>(
   return useAppSelector(
     selectorFn,
     equalityFn
-  )
+  );
 }
 
 export function actionTypeFn(prefix: string) {
@@ -28,6 +28,6 @@ export function actionTypeFn(prefix: string) {
     if (!s) {
       return prefix;
     }
-    return `${prefix}${s}`
+    return `${prefix}${s}`;
   };
 }

@@ -28,7 +28,7 @@ const burgerConstructorSlice = createSlice<BurgerConstructorState>({
       },
       prepare: (item: Ingredient) => {
         const id = nanoid();
-        return { payload: { id, ...item } }
+        return { payload: { id, ...item } };
       },
     },
     removeConstructorIngredient (state: BurgerConstructorState, action: PayloadAction<string>) {

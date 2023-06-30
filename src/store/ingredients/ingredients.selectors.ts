@@ -25,6 +25,13 @@ export const ingredientCountByIdSelector = createSelector(
     }
     return items.reduce((acc, curr) => {
       return curr._id === id ? acc + 1 : acc;
-    }, 0)
+    }, 0);
+  }
+);
+
+export const ingredientByIdSelector = createSelector(
+  [ingredientsSelector, selectId],
+  (items: IngredientStored[], id: string) => {
+    return items.find(item => item._id === id);
   }
 );

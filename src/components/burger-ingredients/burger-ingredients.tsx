@@ -18,7 +18,7 @@ export const BurgerIngredients = (): ReactElement => {
     {'bun': null, 'sauce': null, 'main': null}
   );
 
-  const scrollContainerY = useRef<number | null>(null)
+  const scrollContainerY = useRef<number | null>(null);
 
   const ingredients = useAppSelector(ingredientsSelector);
 
@@ -35,7 +35,7 @@ export const BurgerIngredients = (): ReactElement => {
     if (tabsContentRef.current) {
       const tabsContent = tabsContentRef.current;
       let tab: IngredientType = 'bun';
-      let minDiff = Number.MAX_SAFE_INTEGER
+      let minDiff = Number.MAX_SAFE_INTEGER;
       Object.keys(tabsContent).forEach((key: IngredientType) => {
         const element = tabsContent[key];
         if (element) {
@@ -48,7 +48,7 @@ export const BurgerIngredients = (): ReactElement => {
       });
       setActive(tab);
     }
-  }
+  };
 
   const handleTabChange = (value: IngredientType): void => {
     setActive(value);
@@ -74,7 +74,7 @@ export const BurgerIngredients = (): ReactElement => {
               title={label}
               ref={(el): void => {
                 if (tabsContentRef.current) {
-                  tabsContentRef.current[value] = el
+                  tabsContentRef.current[value] = el;
                 }
               }}>
               {groupedIngredients[value] && <IngredientList ingredients={groupedIngredients[value]} />}

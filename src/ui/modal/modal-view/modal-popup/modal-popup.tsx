@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react'
-import { Text } from '../../../text'
-import { Modal } from 'types'
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import styles from './modal-popup.module.css'
+import React, { ReactElement } from 'react';
+import { Text } from '../../../text';
+import { Modal } from 'types';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import styles from './modal-popup.module.css';
 
 type ModalPopupProps = Modal & {
   onClose: VoidFunction;
@@ -19,5 +19,5 @@ export const ModalPopup = ({ title, content, onClose }: ModalPopupProps): ReactE
       </div>
       {content}
     </section>
-  )
-}
+  );
+};

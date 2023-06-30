@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback } from 'react';
-import styles from './constructor-list.module.css'
+import styles from './constructor-list.module.css';
 import { Ingredient, IngredientStored } from 'types';
-import { DragPlaceholder } from './drag-placeholder'
+import { DragPlaceholder } from './drag-placeholder';
 import { useAppDispatch } from 'store';
 import {
   moveConstructorIngredient,

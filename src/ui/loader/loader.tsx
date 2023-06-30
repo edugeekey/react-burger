@@ -1,11 +1,27 @@
 import React, { ReactElement } from 'react';
-import spinner from './loader.svg';
+import { ReactComponent as Spinner } from './ring-resize.svg';
 import styles from './loader.module.css';
+import cls from 'classnames';
 
-export const Loader = (): ReactElement => {
+type LoaderProps = {
+  color?: string;
+  height?: number;
+  width?: number;
+  className?: string;
+}
+export const Loader = (
+  {
+    color = '#4c4cff',
+    height = 100,
+    width = 100,
+    className
+  }: LoaderProps
+): ReactElement => {
   return (
-    <div className={styles.loader}>
-      <img src={spinner} height={100} width={100} alt='spinner'/>
-    </div>
+      <Spinner
+        className={cls(styles.loader, className)}
+        height={height}
+        width={width}
+        stroke={color} />
   );
 };

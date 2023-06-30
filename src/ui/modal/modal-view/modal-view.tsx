@@ -8,7 +8,6 @@ import { ModalOverlay } from './modal-overlay';
 const modalsContainer = document.getElementById('modals');
 
 type ModalViewProps = Modal & {
-  onBackgroundClick: VoidFunction;
   onClose: VoidFunction;
 };
 
@@ -18,7 +17,7 @@ export const ModalView = (
     content,
     onClose
   }: ModalViewProps
-): ReactElement => {
+): ReactElement | null => {
   useEffect(() => {
     const checkEsc = (e: WindowEventMap['keydown']): void => {
       if (e.key === 'Escape'){
@@ -28,7 +27,7 @@ export const ModalView = (
 
     window.addEventListener('keydown', checkEsc);
 
-    return () => window.removeEventListener('keydown', checkEsc)
+    return () => window.removeEventListener('keydown', checkEsc);
   },[onClose]);
 
   return createPortal((

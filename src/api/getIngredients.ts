@@ -9,7 +9,7 @@ export type GetIngredientsRequest = ApiRequest<void, GetIngredientsResponse>;
 
 export const getIngredients: GetIngredientsRequest = async () => {
   const response = await http.get<GetIngredientsResponse, AxiosResponse<GetIngredientsResponse>>(
-    Urls.getIngredients
+    Urls.GetIngredients
   );
   return response.data;
-}
+};

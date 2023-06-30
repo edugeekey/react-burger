@@ -12,7 +12,7 @@ type ErrorProps = {
 export const Error = ({ text, title, callback }: ErrorProps): ReactElement => {
   return (
     <div className={styles.error}>
-      <Text tag='h1' size='l' className='mb-6'>Что-то пошло не так.</Text>
+      <Text tag='h1' size='l' className='mb-6'>Что-то пошло не так</Text>
       <Text tag='p' inactive>
         {text}
       </Text>
