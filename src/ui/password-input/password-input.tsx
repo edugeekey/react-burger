@@ -1,8 +1,10 @@
-import React, { forwardRef, ReactElement, useState } from 'react';
+import React, { ComponentProps, ForwardedRef, forwardRef, ReactElement, useState } from 'react';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { InputProps } from '../types';
 
-export const PasswordInput = forwardRef((props: InputProps, ref): ReactElement => {
+type PasswordInputProps = ComponentProps<typeof Input>;
+export const PasswordInput = forwardRef(
+    (props: PasswordInputProps, ref: ForwardedRef<HTMLInputElement>
+    ): ReactElement => {
   const [type, setType] = useState<'password' | 'text' >('password');
 
   const toggleType = (): void => {

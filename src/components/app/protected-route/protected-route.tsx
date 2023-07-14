@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactNode } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { AppRoutes } from 'const';
 import { ChildrenProps } from 'types';
@@ -10,7 +10,7 @@ type ProtectedRouteProps = ChildrenProps & {
   onlyForAuth?: boolean;
 };
 
-export const ProtectedRoute = ({ onlyForAuth, children }: ProtectedRouteProps): ReactElement => {
+export const ProtectedRoute = ({ onlyForAuth, children }: ProtectedRouteProps): ReactNode => {
   const isLoading = useAppSelector(isUserLoadingSelector);
   const user = useAppSelector(userSelector);
   const location = useLocation();

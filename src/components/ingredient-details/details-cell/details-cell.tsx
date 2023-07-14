@@ -3,7 +3,7 @@ import { Text } from 'ui';
 
 type DetailsCellProps = {
   label: string;
-  value: number;
+  value?: number;
 }
 
 export const DetailsCell = ({label, value}: DetailsCellProps): ReactElement => {

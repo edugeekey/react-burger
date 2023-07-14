@@ -5,14 +5,16 @@ import { typeFn } from './const';
 
 type OrderState = RequestState<Order | null>;
 
-const orderSlice = createSlice<OrderState>({
+const initialState: OrderState = {
+  isLoading: false,
+  hasError: false,
+  data: null
+};
+
+const orderSlice = createSlice({
   name: typeFn(),
-  initialState: {
-    isLoading: false,
-    hasError: false,
-    data: null
-  },
-  reducers: () => {},
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchOrder.pending, (state) => {

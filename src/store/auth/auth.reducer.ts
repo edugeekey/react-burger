@@ -22,26 +22,28 @@ type AuthState = {
   registerError: boolean;
 };
 
-const authSlice = createSlice<AuthState>({
+const initialState: AuthState = {
+  user: null,
+      userError: false,
+      userLoading: !isTokensEmpty(),
+
+      editUserError: false,
+      editUserLoading: false,
+
+      loginLoading: false,
+      loginError: false,
+
+      logoutLoading: false,
+      logoutError: false,
+
+      registerLoading: false,
+      registerError: false
+};
+
+const authSlice = createSlice({
   name: typeFn(),
-  initialState: {
-    user: null,
-    userError: false,
-    userLoading: !isTokensEmpty(),
-
-    editUserError: false,
-    editUserLoading: false,
-
-    loginLoading: false,
-    loginError: false,
-
-    logoutLoading: false,
-    logoutError: false,
-
-    registerLoading: false,
-    registerError: false
-  },
-  reducers: () => {},
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUser.fulfilled, (state, action) => {

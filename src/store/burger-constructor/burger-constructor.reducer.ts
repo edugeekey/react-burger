@@ -12,12 +12,14 @@ type MoveActionPayload = {
   to: number;
 }
 
-const burgerConstructorSlice = createSlice<BurgerConstructorState>({
+const initialState: BurgerConstructorState = {
+  bun: null,
+  ingredients: []
+};
+
+const burgerConstructorSlice = createSlice({
   name: typeFn(),
-  initialState: {
-    bun: null,
-    ingredients: []
-  },
+  initialState,
   reducers: {
     addBun(state: BurgerConstructorState, action: PayloadAction<Ingredient>) {
       state.bun = action.payload;
@@ -41,7 +43,7 @@ const burgerConstructorSlice = createSlice<BurgerConstructorState>({
       state.ingredients[action.payload.to] = from;
     },
     clear() {
-      return burgerConstructorSlice.getInitialState();
+      return initialState;
     }
   }
 });

@@ -5,13 +5,15 @@ import { typeFn } from 'store/ingredients/const';
 
 type IngredientsState = RequestState<Ingredient[]>;
 
-const ingredientsSlice = createSlice<IngredientsState>({
+const initialState: IngredientsState = {
+  isLoading: false,
+      hasError: false,
+      data: []
+};
+
+const ingredientsSlice = createSlice({
   name: typeFn(),
-  initialState: {
-    isLoading: false,
-    hasError: false,
-    data: []
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

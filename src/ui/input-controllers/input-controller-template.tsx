@@ -1,10 +1,11 @@
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { ComponentProps, ComponentType, ReactElement } from 'react';
-import { useController, UseControllerProps } from 'react-hook-form';
+import React, { ComponentType, ReactElement } from 'react';
+import { FieldValues, useController } from 'react-hook-form';
+import { ControllerProps } from './types';
 
-type Props<T> = ComponentProps<typeof Input> & UseControllerProps<T>;
+type Props<T extends FieldValues> = ControllerProps<T, typeof Input>;
 
-export function inputControllerTemplate<T>(): ComponentType<Props<T>> {
+export function inputControllerTemplate<T extends FieldValues>(): ComponentType<Props<T>> {
   return (props: Props<T>): ReactElement => {
     const { field, formState: { errors } } = useController<T>(props);
 
@@ -12,7 +13,7 @@ export function inputControllerTemplate<T>(): ComponentType<Props<T>> {
       <Input
         {...props}
         {...field}
-        error={Boolean(errors[props.name])} />
+        error={!!errors[props.name]} />
     );
   };
 }
