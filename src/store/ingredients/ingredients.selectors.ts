@@ -15,11 +15,11 @@ export function ingredientsSelector(state: RootState): Ingredient[] {
   return state.ingredients.data;
 }
 
-const selectId = (state: RootState, id: string): string => id;
+const selectId = (state: RootState, id?: string): string | undefined => id;
 
 export const ingredientCountByIdSelector = createSelector(
   [burgerIngredientsSelector, bunSelector, selectId],
-  (items: IngredientStored[], bun: Ingredient| null, id: string) => {
+  (items: IngredientStored[], bun: Ingredient| null, id?: string) => {
     if (id === bun?._id){
       return 1;
     }
@@ -31,7 +31,7 @@ export const ingredientCountByIdSelector = createSelector(
 
 export const ingredientByIdSelector = createSelector(
   [ingredientsSelector, selectId],
-  (items: IngredientStored[], id: string) => {
+  (items: Ingredient[], id?: string) => {
     return items.find(item => item._id === id);
   }
 );

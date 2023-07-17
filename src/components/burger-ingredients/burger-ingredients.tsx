@@ -36,9 +36,9 @@ export const BurgerIngredients = (): ReactElement => {
       const tabsContent = tabsContentRef.current;
       let tab: IngredientType = 'bun';
       let minDiff = Number.MAX_SAFE_INTEGER;
-      Object.keys(tabsContent).forEach((key: IngredientType) => {
+      (Object.keys(tabsContent) as IngredientType[]).forEach((key: IngredientType) => {
         const element = tabsContent[key];
-        if (element) {
+        if (element && scrollContainerY.current) {
           const elementY = element.getBoundingClientRect().y;
           const diff = Math.abs(elementY - scrollContainerY.current);
           if (diff <= minDiff) {

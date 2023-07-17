@@ -24,8 +24,6 @@ type BunItemProps = {
   align: Align;
 }
 export const BunItem = ({bun, align}: BunItemProps): ReactElement => {
-  const {image_mobile, price, name} = bun ?? {};
-
   return (
     <ConstructorItemCard isLocked={true} className={align === 'top' ? 'mb-4' : 'mt-4'}>
       {
@@ -34,9 +32,9 @@ export const BunItem = ({bun, align}: BunItemProps): ReactElement => {
             extraClass='ml-6'
             type={align}
             isLocked={true}
-            thumbnail={image_mobile}
-            text={getBunLabel(name, align)}
-            price={price} />
+            thumbnail={bun.image_mobile}
+            text={getBunLabel(bun.name, align)}
+            price={bun.price} />
           :
           <ConstructorElement
             extraClass='bun-item-placeholder ml-6'

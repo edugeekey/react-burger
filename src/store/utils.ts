@@ -1,19 +1,19 @@
 import {
   useDispatch,
   useSelector,
-  TypedUseSelectorHook
+  TypedUseSelectorHook, EqualityFn, NoInfer
 } from 'react-redux';
 import { RootState, AppDispatch } from './store';
-import { useCallback } from 'react';
+import { DependencyList, useCallback } from 'react';
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export function useSelectorWithProps<TParams, TResult>(
   selector: (state: RootState, props: TParams) => TResult,
-  props,
-  deps,
-  equalityFn?
+  props: TParams,
+  deps: DependencyList,
+  equalityFn?: EqualityFn<NoInfer<TResult>>
 ): TResult {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const selectorFn = useCallback((state: RootState) => selector(state, props), deps);

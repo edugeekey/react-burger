@@ -30,7 +30,7 @@ export const ModalView = (
     return () => window.removeEventListener('keydown', checkEsc);
   },[onClose]);
 
-  return createPortal((
+  return modalsContainer && createPortal((
     <div
       className={`${styles.fixedContainer} flex-center`}>
       <ModalPopup title={title} content={content} onClose={onClose} />

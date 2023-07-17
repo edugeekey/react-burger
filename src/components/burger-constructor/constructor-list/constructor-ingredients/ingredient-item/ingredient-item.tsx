@@ -29,7 +29,7 @@ export const IngredientItem = memo((
     onMove
   }: IngredientItemProps
 ): ReactElement => {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLLIElement | null>(null);
   const {image_mobile, price, name} = ingredient ?? {};
 
   const [{ isDragging }, drag] = useDrag({

@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ApiErrorResponse, ApiResponse } from './types';
 import { getAccessToken, getRefreshToken, setTokens } from 'utils/localStorageHelper';
 import { refreshToken } from 'api/refreshToken';
@@ -10,11 +10,7 @@ export const http = axios.create({
 
 http.interceptors.request.use(
   async config => {
-    const accessToken = getAccessToken();
-    config.headers = {
-      ...config.headers,
-      'authorization': accessToken,
-    };
+    config.headers.authorization = getAccessToken();
     return config;
   },
   error => {
@@ -30,7 +26,7 @@ http.interceptors.response.use(
   return response;
 },
   async function(error: AxiosError<ApiErrorResponse>) {
-    if (error.response.status === 403 && error.response.data.message === 'jwt expired') {
+    if (error.response?.status === 403 && error.response.data.message === 'jwt expired') {
       const originalRequest = error.config;
       const currRefreshToken = getRefreshToken();
       if (currRefreshToken) {
@@ -40,7 +36,7 @@ http.interceptors.response.use(
         }
         setTokens(refreshData);
         axios.defaults.headers.common['authorization'] = refreshData.accessToken;
-        return http(originalRequest);
+        return http(originalRequest as InternalAxiosRequestConfig);
       }
     }
     return Promise.reject(error);
