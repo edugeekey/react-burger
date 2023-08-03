@@ -4,13 +4,16 @@ import { Menu } from './menu';
 import { NavigationItem } from './navigation-item';
 import styles from './app.header.module.css';
 import { AppRoutes } from 'const';
+import { Link } from 'react-router-dom';
 
 export const AppHeader = (): ReactElement => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <Menu />
-        <Logo />
+        <Link to={AppRoutes.Constructor}>
+            <Logo />
+        </Link>
         <NavigationItem
           link={AppRoutes.Profile}
           Icon={LogoutIcon}

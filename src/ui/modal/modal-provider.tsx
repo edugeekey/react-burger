@@ -38,8 +38,9 @@ export const ModalProvider = ({ children, hasBackground }: ModalProviderProps): 
         <Routes>
           <Route
             path={`${AppRoutes.Ingredient}/:id`}
-            element={<ModalView content={<IngredientDetails />} onClose={onRouteModalClose} />}
+            element={<ModalView title='Детали ингредиента' content={<IngredientDetails />} onClose={onRouteModalClose} />}
           />
+
           <Route
               path={`${AppRoutes.Feed}/:id`}
               element={<ModalView content={<OrderDetails />} onClose={onRouteModalClose} />}
