@@ -6,3 +6,5 @@ export * from './reset-password-page';
 export * from './ingredient-page';
 export * from './profile-page';
 export * from './unknown-page-error';
+export * from './orders-feed-page';
+export * from './order-page';

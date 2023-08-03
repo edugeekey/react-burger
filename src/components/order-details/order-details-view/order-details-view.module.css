@@ -1,0 +1,15 @@
+.container {
+    width: 640px;
+    justify-content: center;
+}
+
+.loader {
+    min-height: 452px;
+}
+
+.ingredientsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: auto;
+}

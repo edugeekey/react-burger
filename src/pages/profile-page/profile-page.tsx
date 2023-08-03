@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
 import { ProfileMenu } from './profile-menu';
-import { ProfileForm} from './profile-form';
+import { Outlet } from 'react-router-dom';
 
 export const ProfilePage = (): ReactElement => {
   return (
     <div className='flex mt-30'>
       <ProfileMenu />
-      <ProfileForm />
+      <Outlet />
     </div>
   );
 };
