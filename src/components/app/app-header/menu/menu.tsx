@@ -12,7 +12,7 @@ const menuItems: NavigationItemProps[] = [
   {
     Icon: ListIcon,
     text: 'Лента заказов',
-    link: 'some-route'
+    link: AppRoutes.Feed
   },
 ];
 

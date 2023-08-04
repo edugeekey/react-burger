@@ -35,3 +35,30 @@ export const ingredientByIdSelector = createSelector(
     return items.find(item => item._id === id);
   }
 );
+
+const selectIds = (state: RootState, ids?: string[]): string[] | undefined => ids;
+export const ingredientsByIdsSelector = createSelector(
+    [ingredientsSelector, selectIds],
+    (items: Ingredient[], ids?: string[]) => {
+        if (!ids?.length) {
+            return [];
+        }
+        return ids.reduce((acc: Ingredient[], id) => {
+            const found = items.find(item => item._id === id);
+            if (found) {
+                acc.push(found);
+            }
+            return acc;
+        }, []);
+    }
+);
+
+export const uniqueIngredientsByIdsSelector = createSelector(
+    [ingredientsSelector, selectIds],
+    (items: Ingredient[], ids?: string[]) => {
+        if (!ids?.length) {
+            return [];
+        }
+        return items.filter(item => ids.includes(item._id));
+    }
+);

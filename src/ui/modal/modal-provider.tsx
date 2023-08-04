@@ -4,7 +4,7 @@ import { ChildrenProps, Modal } from 'types';
 import { ModalView } from './modal-view';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { AppRoutes } from 'const';
-import { IngredientDetails } from 'components';
+import { IngredientDetails, OrderDetails } from 'components';
 
 type ModalProviderProps = ChildrenProps & {
   hasBackground: boolean
@@ -38,7 +38,17 @@ export const ModalProvider = ({ children, hasBackground }: ModalProviderProps): 
         <Routes>
           <Route
             path={`${AppRoutes.Ingredient}/:id`}
-            element={<ModalView content={<IngredientDetails />} onClose={onRouteModalClose} />}
+            element={<ModalView title='Детали ингредиента' content={<IngredientDetails />} onClose={onRouteModalClose} />}
+          />
+
+          <Route
+              path={`${AppRoutes.Feed}/:id`}
+              element={<ModalView content={<OrderDetails />} onClose={onRouteModalClose} />}
+          />
+
+          <Route
+              path={`${AppRoutes.Profile}/orders/:id`}
+              element={<ModalView content={<OrderDetails />} onClose={onRouteModalClose} />}
           />
         </Routes>
       )}

@@ -1,5 +1,6 @@
 export enum AppRoutes {
   Constructor = '/',
+  Feed = '/feed',
   Login = '/login',
   Register = '/register',
   ForgotPassword = '/forgot-password',

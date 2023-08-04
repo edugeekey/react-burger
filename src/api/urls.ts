@@ -1,6 +1,7 @@
 export enum Urls {
   GetIngredients = '/ingredients',
   SubmitOrder = '/orders',
+  GetOrder = '/orders',
   SendResetPasswordCode = '/password-reset',
   ResetPassword = '/password-reset/reset',
   Login = '/auth/login',

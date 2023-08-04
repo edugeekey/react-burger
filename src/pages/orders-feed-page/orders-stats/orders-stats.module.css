@@ -1,0 +1,10 @@
+.container {
+    overflow: auto;
+    flex: 1;
+}
+
+.ordersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--offset-base-size) * 9);
+}

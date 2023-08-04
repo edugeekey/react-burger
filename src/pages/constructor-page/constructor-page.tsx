@@ -1,9 +1,8 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { BurgerIngredients, BurgerConstructor } from 'components';
 import { Error, Loader } from 'ui';
-import { useAppSelector, useAppDispatch } from 'store';
+import { useAppSelector } from 'store';
 import {
-  fetchIngredients,
   ingredientsHasErrorSelector,
   isIngredientsLoadingSelector
 } from 'store/ingredients';
@@ -11,15 +10,8 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export const ConstructorPage = (): ReactElement | null => {
-
-  const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isIngredientsLoadingSelector);
   const hasError = useAppSelector(ingredientsHasErrorSelector);
-
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-  }, [dispatch]);
 
   if (isLoading) {
     return <Loader />;

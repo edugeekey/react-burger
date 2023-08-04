@@ -1,0 +1,15 @@
+.ingredient {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--colors-interface-accent);
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    background-color: var(--background);
+    position: relative;
+    overflow: hidden;
+}
+
+.ingredient img {
+    margin-left: -25px;
+}

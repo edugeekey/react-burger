@@ -1,8 +1,6 @@
 import React, { JSX, ReactElement } from 'react';
-import { ChildrenProps, Size } from 'types';
+import { ChildrenProps, Color, Size } from 'types';
 import cls from 'classnames';
-
-type Color = 'accent' | 'error' | 'success';
 
 type TextProps = ChildrenProps & React.HTMLAttributes<HTMLOrSVGElement> & {
   tag?: keyof JSX.IntrinsicElements;

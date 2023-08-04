@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Error, Loader, Text } from 'ui';
+import { Loader, ReloadPageError, Text } from 'ui';
 import { DetailsCell } from './details-cell';
 import { useAppSelector, useSelectorWithProps } from 'store';
 import {
@@ -9,8 +9,6 @@ import {
 } from 'store/ingredients';
 import { useParams } from 'react-router-dom';
 import styles from './ingredient-details.module.css';
-
-export const ERROR_TEXT = 'Попробуйте перезагрухить страницу. Если это не поможет обратитесь в службу поддержки.';
 
 export const IngredientDetails = (): ReactElement | null => {
   const { id } = useParams();
@@ -24,7 +22,7 @@ export const IngredientDetails = (): ReactElement | null => {
       {isLoading ? (
         <Loader />
       ) : hasError ? (
-        <Error text={ERROR_TEXT} title='Обновить' callback={(): void => window.location.reload()} />
+        <ReloadPageError />
       ) : (
         <>
           <img className='mb-4' width={480} height={240} src={image_large} alt={name} />
