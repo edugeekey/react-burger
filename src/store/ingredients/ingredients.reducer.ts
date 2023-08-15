@@ -5,7 +5,7 @@ import { typeFn } from 'store/ingredients/const';
 
 type IngredientsState = RequestState<Ingredient[]>;
 
-const initialState: IngredientsState = {
+export const initialState: IngredientsState = {
   isLoading: false,
       hasError: false,
       data: []

@@ -9,7 +9,7 @@ export interface OrdersState {
     totalToday: number;
 }
 
-const initialState: OrdersState = {
+export const initialState: OrdersState = {
     status: WsStatus.offline,
     orders: [],
     total: 0,

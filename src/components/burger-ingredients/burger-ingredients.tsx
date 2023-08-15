@@ -8,6 +8,7 @@ import { Text } from 'ui';
 import { useAppSelector } from 'store';
 import { ingredientsSelector } from 'store/ingredients';
 import styles from './burger-ingredients.module.css';
+import { DATA_TEST } from 'utils/dataTest';
 
 type IngredientsDict = Record<IngredientType, Ingredient[]>;
 
@@ -59,7 +60,7 @@ export const BurgerIngredients = (): ReactElement => {
     <section className='scroll-parent mt-10 pb-10 mr-10'>
       <Text tag='h1' className='mb-5' size='l'>Соберите бургер</Text>
       <IngredientTabs tabs={TABS} active={active} onChange={handleTabChange} />
-      <div
+      <div data-test={DATA_TEST.Ingredients}
         className={`${styles.container} custom-scroll`}
         ref={(el): void => {
           if (el) {

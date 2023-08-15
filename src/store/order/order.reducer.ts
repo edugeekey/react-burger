@@ -5,7 +5,7 @@ import { typeFn } from './const';
 
 type OrderState = RequestState<Order | null>;
 
-const initialState: OrderState = {
+export const initialState: OrderState = {
   isLoading: false,
   hasError: false,
   data: null

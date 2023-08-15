@@ -7,7 +7,7 @@ export interface OrdersState {
     orders: OrderModel[];
 }
 
-const initialState: OrdersState = {
+export const initialState: OrdersState = {
     status: WsStatus.offline,
     orders: []
 };

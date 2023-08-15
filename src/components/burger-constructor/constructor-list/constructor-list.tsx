@@ -8,6 +8,7 @@ import {
   removeConstructorIngredient
 } from 'store/burger-constructor';
 import { BunItem, IngredientItem } from './constructor-ingredients';
+import { DATA_TEST } from 'utils/dataTest';
 
 type ConstructorListProps = {
   bun: Ingredient | null
@@ -29,7 +30,9 @@ export const ConstructorList = ({ bun, otherIngredients }: ConstructorListProps)
     <ul className='scroll-parent pos-rel'>
       <DragPlaceholder bun={bun} alwaysShow={!otherIngredients.length}/>
       <BunItem bun={bun} align='top' />
-      <div className={`${styles.scrollContainer} custom-scroll`}>
+      <div
+          data-test={DATA_TEST.Constructor.Ingredients}
+          className={`${styles.scrollContainer} custom-scroll`}>
         {
           otherIngredients.map((item, index) => (
             <IngredientItem
