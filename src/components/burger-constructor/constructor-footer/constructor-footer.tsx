@@ -4,6 +4,7 @@ import { Price } from 'ui';
 import { Ingredient } from 'types';
 import cls from 'classnames';
 import styles from './constructor-footer.module.css';
+import { DATA_TEST } from 'utils/dataTest';
 
 type ConstructorFooterProps = {
   bun: Ingredient | null;
@@ -23,7 +24,8 @@ export const ConstructorFooter = ({
   }, [otherIngredients, bun]);
 
   return (
-    <div className={cls(styles.footer, 'pt-6 pr-4')}>
+    <div data-test={DATA_TEST.Constructor.Footer}
+         className={cls(styles.footer, 'pt-6 pr-4')}>
       <Price className='mr-10' price={total} textSize='m' iconSize='m' />
       <Button
         htmlType='button'

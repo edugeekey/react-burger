@@ -4,6 +4,7 @@ import { Ingredient } from 'types';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Align } from '../../types';
 import './bun-item.css';
+import { DATA_TEST } from 'utils/dataTest';
 
 function getBunLabel(name: string, align?: Align): string {
   switch (align) {
@@ -25,7 +26,9 @@ type BunItemProps = {
 }
 export const BunItem = ({bun, align}: BunItemProps): ReactElement => {
   return (
-    <ConstructorItemCard isLocked={true} className={align === 'top' ? 'mb-4' : 'mt-4'}>
+    <ConstructorItemCard
+        dataTest={DATA_TEST.Constructor.Bun + align}
+        isLocked={true} className={align === 'top' ? 'mb-4' : 'mt-4'}>
       {
         bun ?
           <ConstructorElement

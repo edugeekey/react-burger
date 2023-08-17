@@ -7,6 +7,7 @@ import { useAppDispatch } from 'store';
 import { addBun, addConstructorIngredient } from 'store/burger-constructor';
 import cls from 'classnames';
 import styles from './drag-placeholder.module.css';
+import { DATA_TEST } from 'utils/dataTest';
 
 type DragPlaceholderProps = {
   bun: Ingredient | null;
@@ -32,7 +33,9 @@ export const DragPlaceholder = ({ alwaysShow, bun }: DragPlaceholderProps): Reac
   }), [bun]);
 
   return alwaysShow || canDrop ? (
-    <div ref={drop} className={cls(styles.dragPlaceholder, canDrop && isOver && styles.bgHighlighter)}>
+    <div ref={drop}
+         data-test={DATA_TEST.DragPlaceholder}
+         className={cls(styles.dragPlaceholder, canDrop && isOver && styles.bgHighlighter)}>
       {alwaysShow && <Text inactive>Перетащите сюда ингредиент</Text>}
     </div>
   ) : null;

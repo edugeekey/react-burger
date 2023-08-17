@@ -7,11 +7,15 @@ import cls from 'classnames';
 type ConstructorItemCardProps = ChildrenProps & {
   isLocked?: boolean;
   className?: string;
+  dataTest?: string;
 }
 export const ConstructorItemCard = forwardRef(
-    ({ className, isLocked, children }: ConstructorItemCardProps, ref: ForwardedRef<HTMLLIElement>) => {
+    ({ className, isLocked, dataTest, children }: ConstructorItemCardProps, ref: ForwardedRef<HTMLLIElement>) => {
   return (
-    <li ref={ref} className={cls('flex mr-4 ml-4', className)}>
+    <li
+        ref={ref}
+        data-test={dataTest}
+        className={cls('flex mr-4 ml-4', className)}>
       <div className={styles.toggle}>
         {!isLocked && <DragIcon type="primary" />}
       </div>

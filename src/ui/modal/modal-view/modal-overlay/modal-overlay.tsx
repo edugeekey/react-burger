@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import styles from './modal-overlay.module.css';
+import { DATA_TEST } from 'utils/dataTest';
 
 type ModalOverlayProps = {
   onBackgroundClick: VoidFunction;
@@ -7,6 +8,8 @@ type ModalOverlayProps = {
 
 export const ModalOverlay = ({ onBackgroundClick }: ModalOverlayProps): ReactElement => {
   return (
-    <div className={styles.backdrop} onClick={onBackgroundClick}></div>
+    <div
+        data-test={DATA_TEST.Modal.Overlay}
+        className={styles.backdrop} onClick={onBackgroundClick}></div>
   );
 };

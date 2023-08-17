@@ -22,22 +22,22 @@ type AuthState = {
   registerError: boolean;
 };
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   user: null,
-      userError: false,
-      userLoading: !isTokensEmpty(),
+  userError: false,
+  userLoading: !isTokensEmpty(),
 
-      editUserError: false,
-      editUserLoading: false,
+  editUserError: false,
+  editUserLoading: false,
 
-      loginLoading: false,
-      loginError: false,
+  loginLoading: false,
+  loginError: false,
 
-      logoutLoading: false,
-      logoutError: false,
+  logoutLoading: false,
+  logoutError: false,
 
-      registerLoading: false,
-      registerError: false
+  registerLoading: false,
+  registerError: false
 };
 
 const authSlice = createSlice({
